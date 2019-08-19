@@ -1,10 +1,10 @@
 var VSHADER_SOURCE =
-  'attribute vec4 a_Position;\n' +
+  'attribute vec4 aPosition;\n' +
   'attribute vec4 vColor;\n' +
 
   'varying vec4 fColor;\n' +
   'void main() {\n' +
-  ' gl_Position = a_Position;\n' +
+  ' gl_Position = aPosition;\n' +
   ' gl_PointSize = 10.0;\n' +
 
   ' fColor = vColor;\n' +
@@ -44,13 +44,13 @@ function initVertexBuffers(gl){
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
-  var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
-  if(a_Position < 0){
-    console.log('Failed to get location of a_Position');
+  var aPosition = gl.getAttribLocation(gl.program, 'aPosition');
+  if(aPosition < 0){
+    console.log('Failed to get location of aPosition');
     return;
   }
-  gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
-  gl.enableVertexAttribArray(a_Position);
+  gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(aPosition);
 
   return n;
 }
@@ -62,14 +62,13 @@ function example2VertexBuffers(gl){
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
-  var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
-  if(a_Position < 0){
-    console.log('Failed to get location of a_Position');
+  var aPosition = gl.getAttribLocation(gl.program, 'aPosition');
+  if(aPosition < 0){
+    console.log('Failed to get location of aPosition');
     return;
   }
-  gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
-  gl.enableVertexAttribArray(a_Position);
-
+  gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(aPosition);
 
   return n;
 }
@@ -114,9 +113,9 @@ function click(ev, gl, canvas) {
   gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.DYNAMIC_DRAW); // fill memory
 
   // *** take this and put it
-  var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
-  gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0); // binds the filled buffer to an attribute
-  gl.enableVertexAttribArray(a_Position);
+  var aPosition = gl.getAttribLocation(gl.program, 'aPosition');
+  gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0); // binds the filled buffer to an attribute
+  gl.enableVertexAttribArray(aPosition);
   // ***
 
   var colors = new Float32Array(g_colors);
