@@ -94,12 +94,14 @@ function click(ev, gl, canvas) {
   g_points.push(x);
   g_points.push(y);
 
+  // AFTER 3 clicks changes the color
   if(((clicks.Value - 1) % 3) == 0){
     r = Math.random();
     g = Math.random();
     b = Math.random();
   }
 
+  // add a color to g_colors
   g_colors.push(r);
   g_colors.push(g);
   g_colors.push(b);
@@ -107,6 +109,7 @@ function click(ev, gl, canvas) {
 
   gl.clear(gl.COLOR_BUFFER_BIT);
 
+  // prepare buffer for positions
   var vertices = new Float32Array(g_points);
   var vertexBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer); // create bridge to memory
@@ -118,6 +121,7 @@ function click(ev, gl, canvas) {
   gl.enableVertexAttribArray(aPosition);
   // ***
 
+  // prepare buffer for colors
   var colors = new Float32Array(g_colors);
   var cBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
@@ -130,6 +134,7 @@ function click(ev, gl, canvas) {
   // *** here: positions go wrong
   var n = g_points.length/2;
 
+  // render shaders
   gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 
